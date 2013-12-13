@@ -84,9 +84,11 @@ SET(CMAKE_BUILD_TYPE "${CMAKE_BUILD_TYPE}" CACHE STRING "")
 SET(UHD_RELEASE_MODE "${UHD_RELEASE_MODE}" CACHE STRING "UHD Release Mode")
 
 IF(CMAKE_COMPILER_IS_GNUCXX)
-    IF(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s")
-    ENDIF(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
+    IF(STRIP_BINARIES)
+        IF(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s")
+        ENDIF(NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
+    ENDIF(STRIP_BINARIES)
     ADD_DEFINITIONS(-Wall)
     ADD_DEFINITIONS(-Wextra)
     ADD_DEFINITIONS(-Wsign-compare)
@@ -211,8 +213,8 @@ UHD_INSTALL(FILES
 # Images download directory for utils/uhd_images_downloader.py
 ########################################################################
 
-SET(UHD_IMAGES_MD5SUM "61db1170aaaadd787f5150b3eceab6f2")
-SET(UHD_IMAGES_DOWNLOAD_SRC "http://files.ettus.com/binaries/maint_images/archive/uhd-images_003.006.002-rc1.zip")
+SET(UHD_IMAGES_MD5SUM "35a522e2c57c61100027702a7d840060")
+SET(UHD_IMAGES_DOWNLOAD_SRC "http://files.ettus.com/binaries/maint_images/archive/uhd-images_003.006.002-rc2.zip")
 
 ########################################################################
 # Register top level components

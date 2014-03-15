@@ -830,7 +830,7 @@ void b200_impl::update_atrs(void)
         const size_t rxonly = (enb_rx)? ((is_rx2)? STATE_RX1_RX2 : STATE_RX1_TXRX) : STATE_OFF;
         const size_t txonly = (enb_tx)? (STATE_TX1_TXRX) : STATE_OFF;
         size_t fd = STATE_OFF;
-        if (enb_rx and enb_tx) fd = STATE_FDX1_TXRX;
+        if (enb_rx and enb_tx) fd = (is_rx2) ? STATE_FDX1_TXRX : STATE_FDX1_TXRX_SPY;
         if (enb_rx and not enb_tx) fd = rxonly;
         if (not enb_rx and enb_tx) fd = txonly;
         gpio_core_200_32wo::sptr atr = perif.atr;
@@ -848,7 +848,7 @@ void b200_impl::update_atrs(void)
         const size_t rxonly = (enb_rx)? ((is_rx2)? STATE_RX2_RX2 : STATE_RX2_TXRX) : STATE_OFF;
         const size_t txonly = (enb_tx)? (STATE_TX2_TXRX) : STATE_OFF;
         size_t fd = STATE_OFF;
-        if (enb_rx and enb_tx) fd = STATE_FDX2_TXRX;
+        if (enb_rx and enb_tx) fd = (is_rx2) ? STATE_FDX2_TXRX : STATE_FDX2_TXRX_SPY;
         if (enb_rx and not enb_tx) fd = rxonly;
         if (not enb_rx and enb_tx) fd = txonly;
         gpio_core_200_32wo::sptr atr = perif.atr;
